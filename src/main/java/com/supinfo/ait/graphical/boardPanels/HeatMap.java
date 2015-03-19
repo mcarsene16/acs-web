@@ -7,31 +7,32 @@ import com.supinfo.ait.hexBoards.ScoreBoard;
 @SuppressWarnings("serial")
 public class HeatMap extends HexPanel {
 
-  public HeatMap(Board board) {
-    super(board);
-  }
+    public HeatMap(Board board) {
+        super(board);
+    }
 
-  @Override
-  public Color getFillColour(int x, int y) {
-    int value = board.get(x, y);
-    return getHeatColour(value);
-  }
+    @Override
+    public Color getFillColour(int x, int y) {
+        int value = board.get(x, y);
+        return getHeatColour(value);
+    }
 
-  private Color getHeatColour(float score) {
-    Color color;
+    private Color getHeatColour(float score) {
+        Color color;
 
-    int topScore = ((ScoreBoard) board).getHighestScore();
-    int lowScore = ((ScoreBoard) board).getLowestScore();
+        int topScore = ((ScoreBoard) board).getHighestScore();
+        int lowScore = ((ScoreBoard) board).getLowestScore();
 
-    score -= lowScore;
-    topScore -= lowScore;
+        score -= lowScore;
+        topScore -= lowScore;
 
-    float heat = score / topScore;
-    if (heat >= 1) {
-      heat = 1;
-      color = new Color(heat, heat, heat);
-    } else
-      color = new Color(heat, heat, heat);
-    return color;
-  }
+        float heat = score / topScore;
+        if (heat >= 1) {
+            heat = 1;
+            color = new Color(heat, heat, heat);
+        } else {
+            color = new Color(heat, heat, heat);
+        }
+        return color;
+    }
 }

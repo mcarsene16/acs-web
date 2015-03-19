@@ -9,40 +9,41 @@ import com.supinfo.ait.hexBoards.Board;
 import com.supinfo.ait.gameMechanics.Move;
 
 public class PointAndClickPlayer implements Player {
-	private Runner game = null;
-	private int colour = 0;
 
-	public PointAndClickPlayer(Runner game, int colour) {
-		this.game = game;
-		this.colour = colour;
-	}
+    private Runner game = null;
+    private int colour = 0;
 
-  public Move getMove() {
-		switch (colour) {
-		case Board.RED:
-			System.out.print("Red move: ");
-			break;
-		case Board.BLUE:
-			System.out.print("Blue move: ");
-			break;
-		}
+    public PointAndClickPlayer(Runner game, int colour) {
+        this.game = game;
+        this.colour = colour;
+    }
 
-		while (game.getBoard().getSelected() == null) {
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		Point choice = game.getBoard().getSelected();
+    public Move getMove() {
+        switch (colour) {
+            case Board.RED:
+                System.out.print("Red move: ");
+                break;
+            case Board.BLUE:
+                System.out.print("Blue move: ");
+                break;
+        }
 
-		Move move = new Move(colour, choice.x, choice.y);
+        while (game.getBoard().getSelected() == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Point choice = game.getBoard().getSelected();
 
-		game.getBoard().setSelected(null);
-		return move;
-	}
+        Move move = new Move(colour, choice.x, choice.y);
 
-	public ArrayList<Board> getAuxBoards() {
-		return new ArrayList<Board>();
-	}
+        game.getBoard().setSelected(null);
+        return move;
+    }
+
+    public ArrayList<Board> getAuxBoards() {
+        return new ArrayList<Board>();
+    }
 }

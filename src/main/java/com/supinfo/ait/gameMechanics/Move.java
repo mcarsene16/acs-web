@@ -1,23 +1,24 @@
 package com.supinfo.ait.gameMechanics;
 
 public class Move {
-	private int colour, x, y;
 
-	public Move(int colour, int x, int y) {
-		this.colour = colour;
-		this.x = x;
-		this.y = y;
-	}
+    private int colour, x, y;
 
-	public int getColour() {
-		return this.colour;
-	}
+    public Move(int colour, int x, int y) {
+        this.colour = colour;
+        this.x = x;
+        this.y = y;
+    }
 
-	public int getX() {
-		return this.x;
-	}
+    public int getColour() {
+        return this.colour;
+    }
 
-	public int getY() {
-		return this.y;
-	}
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
 }
