@@ -13,9 +13,9 @@ public interface Runner {
 
     public GameBoard getBoard();
 
-    public Player getPlayerRed();
+    public Player getPlayerGreen();
 
-    public Player getPlayerBlue();
+    public Player getPlayerYellow();
 
     public void stopGame();
 

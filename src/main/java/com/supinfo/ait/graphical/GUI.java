@@ -120,8 +120,8 @@ class GUI extends JFrame implements ActionListener {
 
         activeBoardsPanel.add(playBoardPanel, BorderLayout.CENTER);
 
-//        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerRed()));
-//        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerBlue()));
+//        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerGreen()));
+//        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerYellow()));
 //
 //        activeBoardsPanel.add(auxBoardsPanel, BorderLayout.EAST);
         this.add(activeBoardsPanel, BorderLayout.CENTER);

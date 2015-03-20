@@ -21,12 +21,12 @@ public class SeasonMechanics {
     private int[] seasonPattern;
     private Color[] seasonColours;
     private int seasonCount;
-    private int redPosition;
-    private int bluePosition;
-    private int[] redSeasonPattern;
-    private int[] blueSeasonPattern;
-    private boolean redThinking;
-    private boolean blueThinking;
+    private int greenPosition;
+    private int yellowPosition;
+    private int[] greenSeasonPattern;
+    private int[] yellowSeasonPattern;
+    private boolean greenThinking;
+    private boolean yellowThinking;
 
     public SeasonMechanics(int numberOfSeasons) {
 
@@ -50,11 +50,11 @@ public class SeasonMechanics {
 
         }
 
-        redSeasonPattern = getSubPattern(Board.GREEN);
-        blueSeasonPattern = getSubPattern(Board.YELLOW);
+        greenSeasonPattern = getSubPattern(Board.GREEN);
+        yellowSeasonPattern = getSubPattern(Board.YELLOW);
 
-        redPosition = 0;
-        bluePosition = 0;
+        greenPosition = 0;
+        yellowPosition = 0;
     }
 
     public int getSeasonCount() {
@@ -70,10 +70,10 @@ public class SeasonMechanics {
         int season = 0;
         switch (player) {
             case Board.GREEN:
-                season = redSeasonPattern[redPosition];
+                season = greenSeasonPattern[greenPosition];
                 break;
             case Board.YELLOW:
-                season = blueSeasonPattern[bluePosition];
+                season = yellowSeasonPattern[yellowPosition];
                 break;
         }
         return season;
@@ -83,10 +83,10 @@ public class SeasonMechanics {
         int pos = 0;
         switch (player) {
             case Board.GREEN:
-                pos = redPosition;
+                pos = greenPosition;
                 break;
             case Board.YELLOW:
-                pos = bluePosition;
+                pos = yellowPosition;
                 break;
         }
         return pos;
@@ -95,10 +95,10 @@ public class SeasonMechanics {
     public void increment(int player) {
         switch (player) {
             case Board.YELLOW:
-                bluePosition = (bluePosition + 1) % blueSeasonPattern.length;
+                yellowPosition = (yellowPosition + 1) % yellowSeasonPattern.length;
                 break;
             case Board.GREEN:
-                redPosition = (redPosition + 1) % redSeasonPattern.length;
+                greenPosition = (greenPosition + 1) % greenSeasonPattern.length;
                 break;
         }
     }
@@ -106,9 +106,9 @@ public class SeasonMechanics {
     public boolean isThinking(int player) {
         switch (player) {
             case Board.YELLOW:
-                return blueThinking;
+                return yellowThinking;
             case Board.GREEN:
-                return redThinking;
+                return greenThinking;
             default:
                 System.err.println("player id " + player + " does not exist!");
                 return false;
@@ -119,13 +119,13 @@ public class SeasonMechanics {
         switch (player) {
             case Board.YELLOW:
                 System.out.println(HexGameConstantes.YELLOW_PLAYER_NAME + " is thinking");
-                blueThinking = true;
-                redThinking = false;
+                yellowThinking = true;
+                greenThinking = false;
                 break;
             case Board.GREEN:
                 System.out.println(HexGameConstantes.GREEN_PLAYER_NAME + " is thinking");
-                blueThinking = false;
-                redThinking = true;
+                yellowThinking = false;
+                greenThinking = true;
                 break;
             default:
                 System.out.println("what!!!!");

@@ -16,8 +16,8 @@ import com.supinfo.ait.utilis.HexGameConstantes;
 public class GameRunner extends Thread implements Runner {
 
     private GameBoard board;
-    private Player red;
-    private Player blue;
+    private Player green;
+    private Player yellow;
     private int currentPlayer = Board.GREEN;
     private boolean finished = false;
     private volatile boolean stop = false;
@@ -29,8 +29,8 @@ public class GameRunner extends Thread implements Runner {
         this.seasonPicker = new SeasonMechanics(seasoncount);
         this.board = new GameBoard(size, seasonPicker);
         this.gameType = type;
-        this.red = createPlayer(redPlayer, Board.GREEN, redArgs);
-        this.blue = createPlayer(bluePlayer, Board.YELLOW, blueArgs);
+        this.green = createPlayer(redPlayer, Board.GREEN, redArgs);
+        this.yellow = createPlayer(bluePlayer, Board.YELLOW, blueArgs);
     }
 
     public GameBoard getBoard() {
@@ -61,11 +61,11 @@ public class GameRunner extends Thread implements Runner {
             switch (currentPlayer) {
                 case Board.GREEN:
                     seasonPicker.thinkingPlayer(Board.GREEN);
-                    move = red.getMove();
+                    move = green.getMove();
                     break;
                 case Board.YELLOW:
                     seasonPicker.thinkingPlayer(Board.YELLOW);
-                    move = blue.getMove();
+                    move = yellow.getMove();
                     break;
                 default:
                     System.err.println("invoking mystery player");
@@ -155,12 +155,12 @@ public class GameRunner extends Thread implements Runner {
         return player;
     }
 
-    public Player getPlayerBlue() {
-        return blue;
+    public Player getPlayerYellow() {
+        return yellow;
     }
 
-    public Player getPlayerRed() {
-        return red;
+    public Player getPlayerGreen() {
+        return green;
     }
 
     private void announce(String announcement) {
