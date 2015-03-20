@@ -19,9 +19,11 @@ public interface Player {
     public static final String CLICK_DEFAULT_ARGS = "n/a";
     public static final String ADJ_DEFAULT_ARGS = "n/a";
 
-    public static final String[] playerList = {"Random Fill Path", "Random Fill Spot", "Seasonal Adjacency Player", "Human Player",
-        "Classic Adjacency Player"};
-    public static final int[] playerIndex = {R_PATH, R_POINT, SEASON_PATH, CLICK_PLAYER, ALL_PATH};
+    public static final String[] playerList = {"Random Fill Path", "Random Fill Spot", "Human Player",};
+    public static final int[] playerIndex = {R_PATH, R_POINT, CLICK_PLAYER};
+//    public static final String[] playerList = {"Random Fill Path", "Random Fill Spot", "Seasonal Adjacency Player", "Human Player",
+//        "Classic Adjacency Player"};
+//    public static final int[] playerIndex = {R_PATH, R_POINT, SEASON_PATH, CLICK_PLAYER, ALL_PATH};
 
     public static final String[] argsList = {R_DEFAULT_ARGS, R_DEFAULT_ARGS, ADJ_DEFAULT_ARGS, CLICK_DEFAULT_ARGS, ADJ_DEFAULT_ARGS};
 
