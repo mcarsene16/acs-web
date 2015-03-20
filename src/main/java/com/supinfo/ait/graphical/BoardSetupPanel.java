@@ -48,10 +48,10 @@ public class BoardSetupPanel extends JPanel {
     private void setup() {
         this.add(sizeLabel);
         this.add(boardSizeSpinner);
-        this.add(seasonLabel);
-        this.add(seasonCountSpinner);
-        this.add(turnStyleLabel);
-        this.add(turnStyleList);
+//        this.add(seasonLabel);
+//        this.add(seasonCountSpinner);
+//        this.add(turnStyleLabel);
+//        this.add(turnStyleList);
     }
 
     public int getGameType() {

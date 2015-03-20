@@ -21,11 +21,11 @@ public class HexGamePanel extends HexPanel {
         int value = board.get(x, y);
         Color returnColour = Color.WHITE;
         switch (value) {
-            case Board.RED:
-                returnColour = (Color.RED);
+            case Board.GREEN:
+                returnColour = (Color.GREEN);
                 break;
-            case Board.BLUE:
-                returnColour = (Color.BLUE);
+            case Board.YELLOW:
+                returnColour = (Color.YELLOW);
                 break;
             case Board.BLANK:
                 if (((GameBoard) board).getNumberOfSeasons() > 1) {

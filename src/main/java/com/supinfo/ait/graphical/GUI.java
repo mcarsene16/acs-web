@@ -17,6 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import com.supinfo.ait.hexBoards.Board;
 import com.supinfo.ait.graphical.boardPanels.HexGamePanel;
+import com.supinfo.ait.utilis.HexGameConstantes;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
@@ -32,19 +35,19 @@ class GUI extends JFrame implements ActionListener {
     private JPanel playBoardPanel;
     private JPanel gameSettings;
     private JPanel settingsPanel;
-    private PlayerChoicePanel redPlayerOptions;
-    private PlayerChoicePanel bluePlayerOptions;
+    private PlayerChoicePanel greenPlayerOptions;
+    private PlayerChoicePanel yellowPlayerOptions;
     private BoardSetupPanel boardSettings;
 
     private GUI() {
 
         gameSettings = new JPanel(new GridLayout(3, 1));
-        redPlayerOptions = new PlayerChoicePanel("Red");
-        bluePlayerOptions = new PlayerChoicePanel("Blue");
+        greenPlayerOptions = new PlayerChoicePanel(HexGameConstantes.GREEN_PLAYER_NAME);
+        yellowPlayerOptions = new PlayerChoicePanel(HexGameConstantes.YELLOW_PLAYER_NAME);
         boardSettings = new BoardSetupPanel();
 
-        gameSettings.add(redPlayerOptions);
-        gameSettings.add(bluePlayerOptions);
+        gameSettings.add(greenPlayerOptions);
+        gameSettings.add(yellowPlayerOptions);
         gameSettings.add(boardSettings);
 
         buttonPanel = new JPanel(new GridLayout(2, 1));
@@ -64,10 +67,10 @@ class GUI extends JFrame implements ActionListener {
 
     private void prepareGame() {
 
-        int red = redPlayerOptions.getPlayerType();
-        String[] redArgs = redPlayerOptions.getArgs();
-        int blue = bluePlayerOptions.getPlayerType();
-        String[] blueArgs = bluePlayerOptions.getArgs();
+        int red = greenPlayerOptions.getPlayerType();
+        String[] redArgs = greenPlayerOptions.getArgs();
+        int blue = yellowPlayerOptions.getPlayerType();
+        String[] blueArgs = yellowPlayerOptions.getArgs();
         int gameType = boardSettings.getGameType();
         int boardSize = boardSettings.getBoardSize();
         int numberOfSeasons = boardSettings.getSeasonSize();
@@ -94,16 +97,16 @@ class GUI extends JFrame implements ActionListener {
         tickerPanels.setLayout(new GridLayout(2, 1));
 
         JPanel redPanel = new JPanel();
-        redPanel.add(new JLabel("Red:"));
-        TurnViewer redTicker = new TurnViewer(game.getSeasonPicker(), Board.RED);
+        redPanel.add(new JLabel(HexGameConstantes.GREEN_PLAYER_NAME + ":"));
+        TurnViewer redTicker = new TurnViewer(game.getSeasonPicker(), Board.GREEN);
 
         redTicker.startAnimation();
         redPanel.add(redTicker);
         tickerPanels.add(redPanel);
 
         JPanel bluePanel = new JPanel();
-        bluePanel.add(new JLabel("Blue:"));
-        TurnViewer blueTicker = new TurnViewer(game.getSeasonPicker(), Board.BLUE);
+        bluePanel.add(new JLabel(HexGameConstantes.YELLOW_PLAYER_NAME + ":"));
+        TurnViewer blueTicker = new TurnViewer(game.getSeasonPicker(), Board.YELLOW);
 
         blueTicker.startAnimation();
         bluePanel.add(blueTicker);
@@ -117,23 +120,21 @@ class GUI extends JFrame implements ActionListener {
 
         activeBoardsPanel.add(playBoardPanel, BorderLayout.CENTER);
 
-        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerRed()));
-        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerBlue()));
-
-        activeBoardsPanel.add(auxBoardsPanel, BorderLayout.EAST);
-
+//        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerRed()));
+//        auxBoardsPanel.add(new HexGroupPanel(game.getPlayerBlue()));
+//
+//        activeBoardsPanel.add(auxBoardsPanel, BorderLayout.EAST);
         this.add(activeBoardsPanel, BorderLayout.CENTER);
 
         frame.pack();
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         if ("start".equals(e.getActionCommand())) {
-
             if (game != null) {
                 game.stopGame();
             }
-
             this.prepareGame();
             generateBoardPanels();
             gameThread.start();
@@ -141,10 +142,17 @@ class GUI extends JFrame implements ActionListener {
         }
     }
 
+    private void arrangeByPlatForm() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (dim.width - this.getWidth()) / 2;
+        int y = (dim.height - this.getHeight()) / 2;
+        this.setLocation(x, y);
+    }
+
     public static void main(String[] args) {
 
         frame = new GUI();
-        frame.setTitle("Hex");
+        frame.setTitle(HexGameConstantes.MAIN_WINDOW_TILE);
         WindowListener l = new WindowAdapter() {
 
             @Override
@@ -154,6 +162,8 @@ class GUI extends JFrame implements ActionListener {
         };
         frame.addWindowListener(l);
         frame.pack();
+        frame.arrangeByPlatForm();
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 }

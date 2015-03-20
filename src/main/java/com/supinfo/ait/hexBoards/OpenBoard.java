@@ -25,9 +25,9 @@ public class OpenBoard extends GameBoard {
             for (int x = 0; x < size; x++) {
                 if (get(x, y) == Board.BLANK) {
                     if (random.nextBoolean()) {
-                        set_noNewLinks(x, y, Board.RED);
+                        set_noNewLinks(x, y, Board.GREEN);
                     } else {
-                        set_noNewLinks(x, y, Board.BLUE);
+                        set_noNewLinks(x, y, Board.YELLOW);
                     }
                 }
             }

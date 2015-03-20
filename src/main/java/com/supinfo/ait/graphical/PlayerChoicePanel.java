@@ -30,8 +30,8 @@ public class PlayerChoicePanel extends JPanel implements ActionListener {
     private void setup() {
         this.add(playerTypeLabel);
         this.add(playerTypeList);
-        this.add(argsLabel);
-        this.add(argsTextField);
+//        this.add(argsLabel);
+//        this.add(argsTextField);
     }
 
     public String[] getArgs() {

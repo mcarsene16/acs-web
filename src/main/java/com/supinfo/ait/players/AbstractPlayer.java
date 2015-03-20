@@ -15,10 +15,10 @@ public abstract class AbstractPlayer implements Player {
     public AbstractPlayer(Runner game, int colour, String[] args) {
         this.game = game;
         this.player = colour;
-        if (this.player == Board.RED) {
-            this.opponent = Board.BLUE;
+        if (this.player == Board.GREEN) {
+            this.opponent = Board.YELLOW;
         } else {
-            this.opponent = Board.RED;
+            this.opponent = Board.GREEN;
         }
         this.size = game.getBoard().getSize();
     }

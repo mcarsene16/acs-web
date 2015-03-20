@@ -11,13 +11,14 @@ import com.supinfo.ait.players.randomTurn.R_Single;
 import com.supinfo.ait.hexBoards.GameBoard;
 import com.supinfo.ait.hexBoards.Board;
 import com.supinfo.ait.players.AdjSeasonPlayer;
+import com.supinfo.ait.utilis.HexGameConstantes;
 
 public class GameRunner extends Thread implements Runner {
 
     private GameBoard board;
     private Player red;
     private Player blue;
-    private int currentPlayer = Board.RED;
+    private int currentPlayer = Board.GREEN;
     private boolean finished = false;
     private volatile boolean stop = false;
     private SeasonMechanics seasonPicker;
@@ -28,8 +29,8 @@ public class GameRunner extends Thread implements Runner {
         this.seasonPicker = new SeasonMechanics(seasoncount);
         this.board = new GameBoard(size, seasonPicker);
         this.gameType = type;
-        this.red = createPlayer(redPlayer, Board.RED, redArgs);
-        this.blue = createPlayer(bluePlayer, Board.BLUE, blueArgs);
+        this.red = createPlayer(redPlayer, Board.GREEN, redArgs);
+        this.blue = createPlayer(bluePlayer, Board.YELLOW, blueArgs);
     }
 
     public GameBoard getBoard() {
@@ -48,9 +49,9 @@ public class GameRunner extends Thread implements Runner {
 
             if (this.gameType == Runner.RANDOM_TURN) {
                 if (coinflip.nextBoolean() == true) {
-                    this.currentPlayer = Board.BLUE;
+                    this.currentPlayer = Board.YELLOW;
                 } else {
-                    this.currentPlayer = Board.RED;
+                    this.currentPlayer = Board.GREEN;
                 }
             }
 
@@ -58,12 +59,12 @@ public class GameRunner extends Thread implements Runner {
 
             Move move = null;
             switch (currentPlayer) {
-                case Board.RED:
-                    seasonPicker.thinkingPlayer(Board.RED);
+                case Board.GREEN:
+                    seasonPicker.thinkingPlayer(Board.GREEN);
                     move = red.getMove();
                     break;
-                case Board.BLUE:
-                    seasonPicker.thinkingPlayer(Board.BLUE);
+                case Board.YELLOW:
+                    seasonPicker.thinkingPlayer(Board.YELLOW);
                     move = blue.getMove();
                     break;
                 default:
@@ -90,13 +91,13 @@ public class GameRunner extends Thread implements Runner {
             }
 
             switch (currentPlayer) {
-                case Board.RED:
-                    seasonPicker.increment(Board.RED);
-                    this.currentPlayer = Board.BLUE;
+                case Board.GREEN:
+                    seasonPicker.increment(Board.GREEN);
+                    this.currentPlayer = Board.YELLOW;
                     break;
-                case Board.BLUE:
-                    seasonPicker.increment(Board.BLUE);
-                    this.currentPlayer = Board.RED;
+                case Board.YELLOW:
+                    seasonPicker.increment(Board.YELLOW);
+                    this.currentPlayer = Board.GREEN;
                     break;
                 default:
                     System.err.println("invoking mystery player");
@@ -110,12 +111,12 @@ public class GameRunner extends Thread implements Runner {
         this.finished = true;
         java.awt.Toolkit.getDefaultToolkit().beep();
         switch (player) {
-            case Board.RED:
-                System.out.println("Red wins!");
-                announce("Red Wins!");
+            case Board.GREEN:
+                System.out.println(HexGameConstantes.GREEN_PLAYER_NAME + " wins!");
+                announce(HexGameConstantes.GREEN_PLAYER_NAME + " Wins!");
                 break;
-            case Board.BLUE:
-                System.out.println("Blue wins!");
+            case Board.YELLOW:
+                System.out.println(HexGameConstantes.YELLOW_PLAYER_NAME + " wins!");
                 break;
         }
     }

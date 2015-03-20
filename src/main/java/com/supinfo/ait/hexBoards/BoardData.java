@@ -31,10 +31,10 @@ public class BoardData {
     public AdjMatrix getAdjMatrix(int colour) {
         AdjMatrix returnVal;
         switch (colour) {
-            case Board.RED:
+            case Board.GREEN:
                 returnVal = redAdjMatrix.clone();
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 returnVal = blueAdjMatrix.clone();
                 break;
             default:
@@ -48,10 +48,10 @@ public class BoardData {
     public AdjMatrix getAdjMatrix(int colour, int season) {
         AdjMatrix returnVal;
         switch (colour) {
-            case Board.RED:
+            case Board.GREEN:
                 returnVal = redAdjMatrix.clone();
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 returnVal = blueAdjMatrix.clone();
                 break;
             default:
@@ -83,12 +83,12 @@ public class BoardData {
     public boolean checkWin(int colour) {
         boolean returnVal = false;
         switch (colour) {
-            case Board.RED:
+            case Board.GREEN:
                 if (redAdjMatrix.read(RED_BORDER1_NODE, RED_BORDER2_NODE) == AdjMatrix.LINK) {
                     returnVal = true;
                 }
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 if (blueAdjMatrix.read(BLUE_BORDER1_NODE, BLUE_BORDER2_NODE) == AdjMatrix.LINK) {
                     returnVal = true;
                 }
@@ -119,10 +119,10 @@ public class BoardData {
         ArrayList<Integer> neighbours = new ArrayList<Integer>();
         AdjMatrix adjMatrix = null;
         switch (colour) {
-            case Board.RED:
+            case Board.GREEN:
                 adjMatrix = redAdjMatrix;
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 adjMatrix = blueAdjMatrix;
                 break;
         }
@@ -215,11 +215,11 @@ public class BoardData {
         int borderA = 0;
         int borderB = 0;
         switch (colour) {
-            case Board.RED:
+            case Board.GREEN:
                 borderA = RED_BORDER1_NODE;
                 borderB = RED_BORDER2_NODE;
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 borderA = BLUE_BORDER1_NODE;
                 borderB = BLUE_BORDER2_NODE;
                 break;
@@ -311,11 +311,11 @@ public class BoardData {
         board[x][y].setValue(value);
 
         switch (value) {
-            case Board.RED:
+            case Board.GREEN:
                 redAdjMatrix.bypassAndRemoveNode(node);
                 blueAdjMatrix.wipeNode(node);
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 redAdjMatrix.wipeNode(node);
                 blueAdjMatrix.bypassAndRemoveNode(node);
                 break;
@@ -333,10 +333,10 @@ public class BoardData {
         int node = board[x][y].getNodeID();
         board[x][y].setValue(value);
         switch (value) {
-            case Board.RED:
+            case Board.GREEN:
                 blueAdjMatrix.wipeNode(node);
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 redAdjMatrix.wipeNode(node);
                 break;
             default:

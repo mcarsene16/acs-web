@@ -58,13 +58,13 @@ public class AdjPlayer extends AbstractPlayer {
         auxBoards.add(comboPathCounts);
 
         switch (colour) {
-            case Board.RED:
+            case Board.GREEN:
                 myBorder1 = BoardData.RED_BORDER1_NODE;
                 myBorder2 = BoardData.RED_BORDER2_NODE;
                 oppBorder1 = BoardData.BLUE_BORDER1_NODE;
                 oppBorder2 = BoardData.BLUE_BORDER2_NODE;
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 myBorder1 = BoardData.BLUE_BORDER1_NODE;
                 myBorder2 = BoardData.BLUE_BORDER2_NODE;
                 oppBorder1 = BoardData.RED_BORDER1_NODE;

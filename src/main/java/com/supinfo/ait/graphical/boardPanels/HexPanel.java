@@ -118,11 +118,11 @@ public abstract class HexPanel extends JPanel implements Runnable {
         Polygon top = new Polygon(xTop, yTop, 3);
         Polygon bottom = new Polygon(xBottom, yBottom, 3);
 
-        g.setPaint(Color.RED);
+        g.setPaint(Color.GREEN);
         g.fill(top);
         g.fill(bottom);
 
-        g.setPaint(Color.BLUE);
+        g.setPaint(Color.YELLOW);
         g.fill(left);
         g.fill(right);
 
@@ -137,10 +137,10 @@ public abstract class HexPanel extends JPanel implements Runnable {
         int value = board.get(x, y);
         Color returnColour = Color.WHITE;
         switch (value) {
-            case Board.RED:
+            case Board.GREEN:
                 returnColour = (Color.RED);
                 break;
-            case Board.BLUE:
+            case Board.YELLOW:
                 returnColour = (Color.BLUE);
                 break;
             default:
